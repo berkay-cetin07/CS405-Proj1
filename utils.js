@@ -161,18 +161,15 @@ function getChatGPTModelViewMatrix() {
  * stated in transformation-prompt.txt
  */
 function getModelViewMatrix() {
-    // Step 1: Create translation matrix
     const translationMatrix = createTranslationMatrix(0.3, -0.25, 0.0);
 
-    // Step 2: Create rotation matrices
-    const rotationXMatrix = createRotationMatrix_X(Math.PI / 6);  // Rotate 30 degrees around X-axis
-    const rotationYMatrix = createRotationMatrix_Y(Math.PI / 4);  // Rotate 45 degrees around Y-axis
+    const rotationXMatrix = createRotationMatrix_X(Math.PI / 6);  // Rotate 30 deg  X-axis
+    const rotationYMatrix = createRotationMatrix_Y(Math.PI / 4);  // Rotate 45 deg  Y-axis
 
-    // Step 3: Create scale matrix
     const scaleMatrix = createScaleMatrix(0.5, 0.5, 0.5);
 
-    // Step 4: Combine the transformations
-    // Matrix order: scale -> rotate (X) -> rotate (Y) -> translate
+    
+    // scale -> rotate (X) -> rotate (Y) -> translate
     let modelViewMatrix = multiplyMatrices(scaleMatrix, rotationXMatrix);
     modelViewMatrix = multiplyMatrices(modelViewMatrix, rotationYMatrix);
     modelViewMatrix = multiplyMatrices(modelViewMatrix, translationMatrix);
